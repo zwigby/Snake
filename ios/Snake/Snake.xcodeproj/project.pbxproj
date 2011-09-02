@@ -160,6 +160,7 @@
 		AB928C97140D27EC006E7AE0 /* playAgainButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AB928C91140D27EC006E7AE0 /* playAgainButton.png */; };
 		AB928C98140D27EC006E7AE0 /* quitLargeButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AB928C92140D27EC006E7AE0 /* quitLargeButton-hd.png */; };
 		AB928C99140D27EC006E7AE0 /* quitLargeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AB928C93140D27EC006E7AE0 /* quitLargeButton.png */; };
+		AB928CA1140D3F59006E7AE0 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB928CA0140D3F59006E7AE0 /* GameKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -442,6 +443,7 @@
 		AB928C91140D27EC006E7AE0 /* playAgainButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playAgainButton.png; path = Resources/playAgainButton.png; sourceTree = "<group>"; };
 		AB928C92140D27EC006E7AE0 /* quitLargeButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "quitLargeButton-hd.png"; path = "Resources/quitLargeButton-hd.png"; sourceTree = "<group>"; };
 		AB928C93140D27EC006E7AE0 /* quitLargeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = quitLargeButton.png; path = Resources/quitLargeButton.png; sourceTree = "<group>"; };
+		AB928CA0140D3F59006E7AE0 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,6 +451,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB928CA1140D3F59006E7AE0 /* GameKit.framework in Frameworks */,
 				AB6325FF1407428100179E06 /* QuartzCore.framework in Frameworks */,
 				AB6326011407428100179E06 /* OpenGLES.framework in Frameworks */,
 				AB6326031407428100179E06 /* OpenAL.framework in Frameworks */,
@@ -483,6 +486,7 @@
 		AB6325FD1407428100179E06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				AB928CA0140D3F59006E7AE0 /* GameKit.framework */,
 				AB6325FE1407428100179E06 /* QuartzCore.framework */,
 				AB6326001407428100179E06 /* OpenGLES.framework */,
 				AB6326021407428100179E06 /* OpenAL.framework */,
@@ -1143,6 +1147,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Brandon Cannaday (AZVBR3QXY2)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1151,6 +1156,7 @@
 				INFOPLIST_FILE = Snake/Resources/Info.plist;
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6F175504-6397-432D-9C21-C810F43EC150";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;

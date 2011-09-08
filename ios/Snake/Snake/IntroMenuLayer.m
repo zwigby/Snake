@@ -56,15 +56,15 @@
   
   
   CCMenuItemImage *slowButton = [CCMenuItemImage itemFromNormalImage:@"slowButton.png"
-                                                       selectedImage: @"slowButton.png"
+                                                       selectedImage:@"slowButton.png"
                                                               target:self
                                                             selector:@selector(playSlowGame:)];
   CCMenuItemImage *mediumButton = [CCMenuItemImage itemFromNormalImage:@"mediumButton.png"
-                                                         selectedImage: @"mediumButton.png"
+                                                         selectedImage:@"mediumButton.png"
                                                                 target:self
                                                               selector:@selector(playMediumGame:)];
   CCMenuItemImage *fastButton = [CCMenuItemImage itemFromNormalImage:@"fastButton.png"
-                                                       selectedImage: @"fastButton.png"
+                                                       selectedImage:@"fastButton.png"
                                                               target:self
                                                             selector:@selector(playFastGame:)];
   CCMenu * mainMenu = [CCMenu menuWithItems:slowButton, mediumButton, fastButton, nil];
@@ -75,19 +75,19 @@
 
 - (void)playSlowGame:(CCMenuItem *)menuItem 
 {
-  [GameManager getInstance].tickLength = 0.2;
+  [GameManager getInstance].tickLength = kSlowGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
 }
 
 - (void)playMediumGame:(CCMenuItem *)menuItem 
 {
-  [GameManager getInstance].tickLength = 0.1;
+  [GameManager getInstance].tickLength = kMediumGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
 }
 
 - (void)playFastGame:(CCMenuItem *)menuItem 
 {
-  [GameManager getInstance].tickLength = 0.04;
+  [GameManager getInstance].tickLength = kFastGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
 }
 

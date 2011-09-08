@@ -143,6 +143,7 @@
       collision = [snake checkCollisionWithRect:bg.boundingBox];
     }
     if(collision) {
+      [[GameManager getInstance] handleGameOver];
       [[CCDirector sharedDirector] replaceScene: [GameOverLayer scene]];
     }
     if([snake eatApple:apple.position]) {

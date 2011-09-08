@@ -11,6 +11,7 @@
 #import "IntroMenuLayer.h"
 #import "GameLayer.h"
 #import "GameManager.h"
+#import "GCManager.h"
 
 @implementation GameOverLayer
 
@@ -56,15 +57,24 @@
 - (void)setupMenu
 {
   CCMenuItemImage *playButton = [CCMenuItemImage itemFromNormalImage:@"playAgainButton.png"
-                                                       selectedImage: @"playAgainButton.png"
+                                                       selectedImage:@"playAgainButton.png"
                                                               target:self
                                                             selector:@selector(playGame:)];
   CCMenuItemImage *quitButton = [CCMenuItemImage itemFromNormalImage:@"quitLargeButton.png"
-                                                         selectedImage: @"quitLargeButton.png"
-                                                                target:self
-                                                              selector:@selector(quitGame:)];
-  CCMenu * mainMenu = [CCMenu menuWithItems:playButton, quitButton, nil];
-  mainMenu.position = ccp(160, 177);
+                                                      selectedImage:@"quitLargeButton.png"
+                                                             target:self
+                                                           selector:@selector(quitGame:)];
+  CCMenu *mainMenu;
+  if([GCManager getInstance].gameCenterAvailable) {
+    CCMenuItemImage *highscoresButton = [CCMenuItemImage itemFromNormalImage:@"highscoresButton.png"
+                                                               selectedImage:@"highscoresButton.png"
+                                                                      target:self
+                                                                    selector:@selector(showHighscores:)];
+    mainMenu = [CCMenu menuWithItems:playButton, quitButton, highscoresButton, nil];
+  } else {
+    mainMenu = [CCMenu menuWithItems:playButton, quitButton, nil];
+  }
+  mainMenu.position = ccp(160, 150);
   [mainMenu alignItemsVerticallyWithPadding:10.0];
   [self addChild:mainMenu];
 }
@@ -78,6 +88,12 @@
 {
   [[CCDirector sharedDirector] replaceScene: [IntroMenuLayer scene]];
 }
+
+- (void)showHighscores:(CCMenuItem *)menuItem
+{
+  [[GameManager getInstance] showLeaderboard];
+}
+
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

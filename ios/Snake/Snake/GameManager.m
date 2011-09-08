@@ -7,6 +7,7 @@
 //
 
 #import "GameManager.h"
+#import "GCManager.h"
 
 @implementation GameManager
 
@@ -32,6 +33,30 @@
   }
   
   return self;
+}
+
+- (void)handleGameOver
+{
+  GCManager *gcManager = [GCManager getInstance];
+  if(kSlowGameSpeed - tickLength < 0.00001) {
+    [gcManager submitSlowScore:currentScore];
+  } else if(kMediumGameSpeed - tickLength < 0.00001) {
+    [gcManager submitMediumScore:currentScore];
+  } else if(kFastGameSpeed - tickLength < 0.00001) {
+    [gcManager submitFastScore:currentScore];
+  }
+}
+
+- (void)showLeaderboard
+{
+  GCManager *gcManager = [GCManager getInstance];
+  if(kSlowGameSpeed - tickLength < 0.00001) {
+    [gcManager showLeaderboard:kSlowLeaderboardId];
+  } else if(kMediumGameSpeed - tickLength < 0.00001) {
+    [gcManager showLeaderboard:kMediumLeaderboardId];
+  } else if(kFastGameSpeed - tickLength < 0.00001) {
+    [gcManager showLeaderboard:kFastLeaderboardId];
+  }
 }
 
 @end

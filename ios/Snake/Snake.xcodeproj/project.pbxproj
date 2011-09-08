@@ -589,6 +589,7 @@
 				AB6327291407428400179E06 /* cocoslive */,
 				AB6327341407428400179E06 /* TouchJSON */,
 				AB63274A1407428400179E06 /* FontLabel */,
+				AB8CE7F31419187E005CBD3D /* FlurryAnalytics */,
 			);
 			name = libs;
 			sourceTree = "<group>";
@@ -882,7 +883,6 @@
 		AB63275C1407428400179E06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB8CE7F31419187E005CBD3D /* FlurryAnalytics */,
 				AB63275D1407428400179E06 /* Prefix.pch */,
 				AB63275E1407428400179E06 /* main.m */,
 			);

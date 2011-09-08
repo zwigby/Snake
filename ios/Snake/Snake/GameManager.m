@@ -8,6 +8,7 @@
 
 #import "GameManager.h"
 #import "GCManager.h"
+#import "FlurryAnalytics.h"
 
 @implementation GameManager
 
@@ -40,10 +41,13 @@
   GCManager *gcManager = [GCManager getInstance];
   if(kSlowGameSpeed - tickLength < 0.00001) {
     [gcManager submitSlowScore:currentScore];
+    [FlurryAnalytics endTimedEvent:@"Slow Game" withParameters:nil];
   } else if(kMediumGameSpeed - tickLength < 0.00001) {
     [gcManager submitMediumScore:currentScore];
+    [FlurryAnalytics endTimedEvent:@"Medium Game" withParameters:nil];
   } else if(kFastGameSpeed - tickLength < 0.00001) {
     [gcManager submitFastScore:currentScore];
+    [FlurryAnalytics endTimedEvent:@"Fast Game" withParameters:nil];
   }
 }
 
@@ -56,6 +60,17 @@
     [gcManager showLeaderboard:kMediumLeaderboardId];
   } else if(kFastGameSpeed - tickLength < 0.00001) {
     [gcManager showLeaderboard:kFastLeaderboardId];
+  }
+}
+
+- (void)handleGameReplay
+{
+  if(kSlowGameSpeed - tickLength < 0.00001) {
+    [FlurryAnalytics endTimedEvent:@"Slow Game" withParameters:nil];
+  } else if(kMediumGameSpeed - tickLength < 0.00001) {
+    [FlurryAnalytics endTimedEvent:@"Medium Game" withParameters:nil];
+  } else if(kFastGameSpeed - tickLength < 0.00001) {
+    [FlurryAnalytics endTimedEvent:@"Fast Game" withParameters:nil];
   }
 }
 

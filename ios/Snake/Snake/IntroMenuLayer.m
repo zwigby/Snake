@@ -12,6 +12,7 @@
 
 #import "GameLayer.h"
 #import "GameManager.h"
+#import "FlurryAnalytics.h"
 
 // IntroMenuLayer implementation
 @implementation IntroMenuLayer
@@ -54,7 +55,6 @@
 - (void)setupMenu
 {
   
-  
   CCMenuItemImage *slowButton = [CCMenuItemImage itemFromNormalImage:@"slowButton.png"
                                                        selectedImage:@"slowButton.png"
                                                               target:self
@@ -73,22 +73,31 @@
   [self addChild:mainMenu];
 }
 
+- (void)onEnter
+{
+  [super onEnter];
+  [FlurryAnalytics logPageView];
+}
+
 - (void)playSlowGame:(CCMenuItem *)menuItem 
 {
   [GameManager getInstance].tickLength = kSlowGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
+  [FlurryAnalytics logEvent:@"Slow Game" timed:YES];
 }
 
 - (void)playMediumGame:(CCMenuItem *)menuItem 
 {
   [GameManager getInstance].tickLength = kMediumGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
+  [FlurryAnalytics logEvent:@"Medium Game" timed:YES];
 }
 
 - (void)playFastGame:(CCMenuItem *)menuItem 
 {
   [GameManager getInstance].tickLength = kFastGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
+  [FlurryAnalytics logEvent:@"Fast Game" timed:YES];
 }
 
 // on "dealloc" you need to release all your retained objects

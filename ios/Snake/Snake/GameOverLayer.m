@@ -12,6 +12,7 @@
 #import "GameLayer.h"
 #import "GameManager.h"
 #import "GCManager.h"
+#import "FlurryAnalytics.h"
 
 @implementation GameOverLayer
 
@@ -79,8 +80,15 @@
   [self addChild:mainMenu];
 }
 
+- (void)onEnter
+{
+  [super onEnter];
+  [FlurryAnalytics logPageView];
+}
+
 - (void)playGame:(CCMenuItem *)menuItem 
 {
+  [[GameManager getInstance] handleGameReplay];
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
 }
 

@@ -14,6 +14,7 @@
 #import "Snake.h"
 #import "Apple.h"
 #import "GameManager.h"
+#import "FlurryAnalytics.h"
 
 @implementation GameLayer
 
@@ -95,6 +96,12 @@
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+- (void)onEnter
+{
+  [super onEnter];
+  [FlurryAnalytics logPageView];
+}
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event 
 {
   if ([CCDirector sharedDirector].isPaused) {
@@ -151,6 +158,7 @@
       [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", gameManager.currentScore]];
       [snake addPiece];
       apple.position = [self getRandomApplePosition];
+      [FlurryAnalytics logEvent:@"Apple Eaten"];
     }
     dtTick = 0;
   }

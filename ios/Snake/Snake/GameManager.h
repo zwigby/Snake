@@ -27,5 +27,6 @@
 
 - (void)handleGameOver;
 - (void)showLeaderboard;
+- (void)handleGameReplay;
 
 @end

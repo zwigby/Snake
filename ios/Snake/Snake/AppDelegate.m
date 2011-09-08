@@ -13,10 +13,15 @@
 #import "IntroMenuLayer.h"
 #import "RootViewController.h"
 #import "GCManager.h"
+#import "FlurryAnalytics.h"
 
 @implementation AppDelegate
 
 @synthesize window;
+
+void uncaughtExceptionHandler(NSException *exception) {
+  [FlurryAnalytics logError:@"Uncaught" message:@"Crash!" exception:exception];
+}
 
 - (void) applicationDidFinishLaunching:(UIApplication*)application
 {
@@ -47,8 +52,8 @@
 	
 	// attach the openglView to the director
 	[director setOpenGLView:glView];
-	
-//	// Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
+  
+  // Enables High Res mode (Retina Display) on iPhone 4 and maintains low res on all other devices
 	if( ! [director enableRetinaDisplay:YES] )
 		CCLOG(@"Retina Display Not supported");
 	
@@ -77,6 +82,11 @@
 	
 	// Run the intro Scene
 	[director runWithScene: [IntroMenuLayer scene]];
+  
+  // Start Analytics
+  [FlurryAnalytics startSession:@"XH5EHVU9M5ZMPPKTH3BA"];
+  // Catch uncaught exceptions and send them to flurry
+  NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 }
 
 

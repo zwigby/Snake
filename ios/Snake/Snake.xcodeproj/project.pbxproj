@@ -166,6 +166,8 @@
 		AB928C98140D27EC006E7AE0 /* quitLargeButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AB928C92140D27EC006E7AE0 /* quitLargeButton-hd.png */; };
 		AB928C99140D27EC006E7AE0 /* quitLargeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AB928C93140D27EC006E7AE0 /* quitLargeButton.png */; };
 		AB928CA1140D3F59006E7AE0 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB928CA0140D3F59006E7AE0 /* GameKit.framework */; };
+		ABF7E7BF141AB0E500DD430A /* playResumeButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF7E7BD141AB0E500DD430A /* playResumeButton-hd.png */; };
+		ABF7E7C0141AB0E500DD430A /* playResumeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF7E7BE141AB0E500DD430A /* playResumeButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -457,6 +459,8 @@
 		AB928C92140D27EC006E7AE0 /* quitLargeButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "quitLargeButton-hd.png"; path = "Resources/quitLargeButton-hd.png"; sourceTree = "<group>"; };
 		AB928C93140D27EC006E7AE0 /* quitLargeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = quitLargeButton.png; path = Resources/quitLargeButton.png; sourceTree = "<group>"; };
 		AB928CA0140D3F59006E7AE0 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		ABF7E7BD141AB0E500DD430A /* playResumeButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "playResumeButton-hd.png"; path = "Resources/playResumeButton-hd.png"; sourceTree = "<group>"; };
+		ABF7E7BE141AB0E500DD430A /* playResumeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playResumeButton.png; path = Resources/playResumeButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +560,8 @@
 				AB1A77F3140C845800E0454D /* slowButton.png */,
 				AB1A7808140C876700E0454D /* pauseButton-hd.png */,
 				AB0A6349140C312C00F3CC35 /* pauseButton.png */,
+				ABF7E7BD141AB0E500DD430A /* playResumeButton-hd.png */,
+				ABF7E7BE141AB0E500DD430A /* playResumeButton.png */,
 				AB1A7806140C875500E0454D /* quitButton-hd.png */,
 				AB0A634A140C312C00F3CC35 /* quitButton.png */,
 				AB1A7812140C9ADF00E0454D /* game_screen-hd.png */,
@@ -1022,6 +1028,8 @@
 				AB08A23A1417C0CC007A2D34 /* highscoresButton-hd.png in Resources */,
 				AB08A23B1417C0CC007A2D34 /* highscoresButton.png in Resources */,
 				AB0DAE31141855B900577EB9 /* Default@2x.png in Resources */,
+				ABF7E7BF141AB0E500DD430A /* playResumeButton-hd.png in Resources */,
+				ABF7E7C0141AB0E500DD430A /* playResumeButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

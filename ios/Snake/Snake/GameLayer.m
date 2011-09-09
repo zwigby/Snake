@@ -82,9 +82,19 @@
   
   CCMenuItemImage *pauseButton = [CCMenuItemImage itemFromNormalImage:@"pauseButton.png"
                                                        selectedImage:@"pauseButton.png"
-                                                              target:self
-                                                            selector:@selector(pauseGame)];
-  [mainMenu addChild:pauseButton];
+                                                              target:nil
+                                                            selector:nil];
+  
+  CCMenuItemImage *resumeButton = [CCMenuItemImage itemFromNormalImage:@"playResumeButton.png"
+                                                        selectedImage:@"playResumeButton.png"
+                                                               target:nil
+                                                             selector:nil];
+  
+  CCMenuItemToggle *pauseToggle = [CCMenuItemToggle itemWithTarget:self 
+                                                          selector:@selector(pauseGame) 
+                                                             items:pauseButton, resumeButton, nil];
+  
+  [mainMenu addChild:pauseToggle];
   [mainMenu alignItemsHorizontallyWithPadding:184.0];
   mainMenu.position = ccp(160, 26);
   

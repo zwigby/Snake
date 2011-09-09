@@ -56,15 +56,15 @@
 {
   
   CCMenuItemImage *slowButton = [CCMenuItemImage itemFromNormalImage:@"slowButton.png"
-                                                       selectedImage:@"slowButton.png"
+                                                       selectedImage:@"slowButtonSelected.png"
                                                               target:self
                                                             selector:@selector(playSlowGame:)];
   CCMenuItemImage *mediumButton = [CCMenuItemImage itemFromNormalImage:@"mediumButton.png"
-                                                         selectedImage:@"mediumButton.png"
+                                                         selectedImage:@"mediumButtonSelected.png"
                                                                 target:self
                                                               selector:@selector(playMediumGame:)];
   CCMenuItemImage *fastButton = [CCMenuItemImage itemFromNormalImage:@"fastButton.png"
-                                                       selectedImage:@"fastButton.png"
+                                                       selectedImage:@"fastButtonSelected.png"
                                                               target:self
                                                             selector:@selector(playFastGame:)];
   CCMenu * mainMenu = [CCMenu menuWithItems:slowButton, mediumButton, fastButton, nil];

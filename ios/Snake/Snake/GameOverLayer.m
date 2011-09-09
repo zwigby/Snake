@@ -58,17 +58,17 @@
 - (void)setupMenu
 {
   CCMenuItemImage *playButton = [CCMenuItemImage itemFromNormalImage:@"playAgainButton.png"
-                                                       selectedImage:@"playAgainButton.png"
+                                                       selectedImage:@"playAgainButtonSelected.png"
                                                               target:self
                                                             selector:@selector(playGame:)];
   CCMenuItemImage *quitButton = [CCMenuItemImage itemFromNormalImage:@"quitLargeButton.png"
-                                                      selectedImage:@"quitLargeButton.png"
+                                                      selectedImage:@"quitLargeButtonSelected.png"
                                                              target:self
                                                            selector:@selector(quitGame:)];
   CCMenu *mainMenu;
   if([GCManager getInstance].gameCenterAvailable) {
     CCMenuItemImage *highscoresButton = [CCMenuItemImage itemFromNormalImage:@"highscoresButton.png"
-                                                               selectedImage:@"highscoresButton.png"
+                                                               selectedImage:@"highscoresButtonSelected.png"
                                                                       target:self
                                                                     selector:@selector(showHighscores:)];
     mainMenu = [CCMenu menuWithItems:playButton, quitButton, highscoresButton, nil];

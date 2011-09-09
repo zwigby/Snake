@@ -75,18 +75,18 @@
   CCMenu * mainMenu = [CCMenu menuWithItems:nil];
   
   CCMenuItemImage *quitButton = [CCMenuItemImage itemFromNormalImage:@"quitButton.png"
-                                                       selectedImage:@"quitButton.png"
+                                                       selectedImage:@"quitButtonSelected.png"
                                                               target:self
                                                             selector:@selector(quitGame)];
   [mainMenu addChild:quitButton];
   
   CCMenuItemImage *pauseButton = [CCMenuItemImage itemFromNormalImage:@"pauseButton.png"
-                                                       selectedImage:@"pauseButton.png"
+                                                       selectedImage:@"pauseButtonSelected.png"
                                                               target:nil
                                                             selector:nil];
   
   CCMenuItemImage *resumeButton = [CCMenuItemImage itemFromNormalImage:@"playResumeButton.png"
-                                                        selectedImage:@"playResumeButton.png"
+                                                        selectedImage:@"playResumeButtonSelected.png"
                                                                target:nil
                                                              selector:nil];
   

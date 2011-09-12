@@ -44,10 +44,14 @@
     logo.position = ccp(160, 370);
     [self addChild:logo];
     
-    CCSprite *pfpInfo = [CCSprite spriteWithFile:@"pfp_info.png"];
+    CCMenuItemImage *pfpInfo = [CCMenuItemImage itemFromNormalImage:@"pfp_info.png" 
+                                                      selectedImage:@"pfp_info.png" 
+                                                             target:self 
+                                                           selector:@selector(gotoPFPSite:)];
+    CCMenu *pfpMenu = [CCMenu menuWithItems:pfpInfo, nil];
     [pfpInfo setAnchorPoint:ccp(0,0)];
-    pfpInfo.position = ccp(10, 5);
-    [self addChild:pfpInfo];
+    pfpMenu.position = ccp(10, 5);
+    [self addChild:pfpMenu];
 	}
 	return self;
 }
@@ -98,6 +102,14 @@
   [GameManager getInstance].tickLength = kFastGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
   [FlurryAnalytics logEvent:@"Fast Game" timed:YES];
+}
+
+- (void)gotoPFPSite:(CCMenuItemImage *)menuItem
+{
+  // Opens paranoid ferret website
+  UIApplication *app = [UIApplication sharedApplication];
+  NSURL *url = [NSURL URLWithString:@"http://paranoidferret.com"];
+  [app openURL:url];
 }
 
 // on "dealloc" you need to release all your retained objects

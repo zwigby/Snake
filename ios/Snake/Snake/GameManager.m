@@ -14,6 +14,7 @@
 
 @synthesize currentScore;
 @synthesize tickLength;
+@synthesize currentHighScore;
 
 + (GameManager *)getInstance {
   static GameManager *instance;
@@ -72,6 +73,24 @@
   } else if(kFastGameSpeed - tickLength < 0.00001) {
     [FlurryAnalytics endTimedEvent:@"Fast Game" withParameters:nil];
   }
+}
+
+- (int64_t)getHighScore
+{
+  GCManager *gcManager = [GCManager getInstance];
+  if(kSlowGameSpeed - tickLength < 0.00001) {
+    return [gcManager getSlowHighScore];
+  } else if(kMediumGameSpeed - tickLength < 0.00001) {
+    return [gcManager getMediumHighScore];
+  } else if(kFastGameSpeed - tickLength < 0.00001) {
+    return [gcManager getFastHighScore];
+  }
+  return 0;
+}
+
+- (int64_t)currentHighScore
+{
+  return [GCManager getInstance].currentHighScore;
 }
 
 @end

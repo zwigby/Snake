@@ -11,6 +11,7 @@
 @implementation GCManager
 
 @synthesize gameCenterAvailable = _gameCenterAvailable;
+@synthesize currentHighScore = _currentHighScore;
 
 + (GCManager *)getInstance {
   static GCManager *instance;
@@ -100,6 +101,51 @@
 - (void)submitFastScore:(int64_t)score
 {
   [self submitScore:score withLeaderboard:kFastLeaderboardId];
+}
+
+- (int64_t)getHighScore:(NSString *)leaderboardType
+{
+  if(!_gameCenterAvailable) {
+    return -1;
+  }
+  
+  GKLeaderboard *leaderboardRequest = [[GKLeaderboard alloc] init];
+  
+  if (leaderboardRequest != nil)
+  {
+    leaderboardRequest.playerScope = GKLeaderboardPlayerScopeGlobal;
+    leaderboardRequest.timeScope = GKLeaderboardTimeScopeAllTime;
+    leaderboardRequest.range = NSMakeRange(1,1);
+    leaderboardRequest.category = leaderboardType;
+    [leaderboardRequest loadScoresWithCompletionHandler: ^(NSArray *scores, NSError *error) {
+      if (error != nil)
+      {
+        // handle the error.
+      }
+      if (scores != nil)
+      {
+        GKScore *topScore = [scores objectAtIndex:0];
+        _currentHighScore = topScore.value;
+      }
+    }];
+  }
+  
+  return _currentHighScore;
+}
+
+- (int64_t)getSlowHighScore
+{
+  return [self getHighScore:kSlowLeaderboardId];
+}
+
+- (int64_t)getMediumHighScore
+{
+  return [self getHighScore:kMediumLeaderboardId];
+}
+
+- (int64_t)getFastHighScore
+{
+  return [self getHighScore:kFastLeaderboardId];
 }
 
 - (void)showLeaderboard:(NSString *)category

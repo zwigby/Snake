@@ -22,6 +22,7 @@
 }
 
 @property (nonatomic, readonly) BOOL gameCenterAvailable;
+@property (nonatomic, readonly) int64_t currentHighScore;
 
 + (GCManager *)getInstance;
 
@@ -32,6 +33,10 @@
 - (void)submitSlowScore:(int64_t)score;
 - (void)submitMediumScore:(int64_t)score;
 - (void)submitFastScore:(int64_t)score;
+- (int64_t)getHighScore:(NSString *)leaderboardType;
+- (int64_t)getSlowHighScore;
+- (int64_t)getMediumHighScore;
+- (int64_t)getFastHighScore;
 - (void)showLeaderboard:(NSString *)category;
 
 @end

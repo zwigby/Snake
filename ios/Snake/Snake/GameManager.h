@@ -20,6 +20,8 @@
   ccTime tickLength;
 }
 
+@property (nonatomic, readonly) int64_t currentHighScore;
+
 + (GameManager *)getInstance;
 
 @property (nonatomic, assign) int64_t currentScore;
@@ -28,5 +30,6 @@
 - (void)handleGameOver;
 - (void)showLeaderboard;
 - (void)handleGameReplay;
+- (int64_t)getHighScore;
 
 @end

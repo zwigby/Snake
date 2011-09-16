@@ -52,6 +52,20 @@
     
     [self addChild:scoreLabel];
     
+    int64_t hscore = [gameManager getHighScore];
+    if(hscore != -1) {
+      NSString *hscoreString = [NSString stringWithFormat:@"High Score: %d", hscore];
+      highscoreLabel = [[CCLabelBMFont labelWithString:hscoreString fntFile:@"lcd_solid.fnt"] retain];
+      [highscoreLabel setAnchorPoint:ccp(1.0, 1.0)];
+      highscoreLabel.position = ccp(310, 475);
+      
+      if(hscore == 0) {
+        highscoreLabel.visible = NO;
+      }
+      
+      [self addChild:highscoreLabel];
+    }
+    
     [self setupMenu];
     
     apple = [[Apple alloc] initWithPosition:[self getRandomApplePosition]];
@@ -172,6 +186,12 @@
     }
     dtTick = 0;
   }
+  if(highscoreLabel) {
+    if(gameManager.currentHighScore != 0) {
+      highscoreLabel.visible = YES;
+    }
+    [highscoreLabel setString:[NSString stringWithFormat:@"High Score: %d", gameManager.currentHighScore]];
+  }
 }
 
 - (CGPoint)getRandomApplePosition
@@ -217,6 +237,7 @@
   [apple release];
   [snake release];
   [scoreLabel release];
+  [highscoreLabel release];
   [super dealloc];
 }
 

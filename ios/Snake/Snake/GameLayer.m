@@ -14,6 +14,7 @@
 #import "Snake.h"
 #import "Apple.h"
 #import "GameManager.h"
+#import "FlurryAnalytics.h"
 
 @implementation GameLayer
 
@@ -51,6 +52,20 @@
     
     [self addChild:scoreLabel];
     
+    int64_t hscore = [gameManager getHighScore];
+    if(hscore != -1) {
+      NSString *hscoreString = [NSString stringWithFormat:@"High Score: %d", hscore];
+      highscoreLabel = [[CCLabelBMFont labelWithString:hscoreString fntFile:@"lcd_solid.fnt"] retain];
+      [highscoreLabel setAnchorPoint:ccp(1.0, 1.0)];
+      highscoreLabel.position = ccp(310, 475);
+      
+      if(hscore == 0) {
+        highscoreLabel.visible = NO;
+      }
+      
+      [self addChild:highscoreLabel];
+    }
+    
     [self setupMenu];
     
     apple = [[Apple alloc] initWithPosition:[self getRandomApplePosition]];
@@ -74,16 +89,26 @@
   CCMenu * mainMenu = [CCMenu menuWithItems:nil];
   
   CCMenuItemImage *quitButton = [CCMenuItemImage itemFromNormalImage:@"quitButton.png"
-                                                       selectedImage:@"quitButton.png"
+                                                       selectedImage:@"quitButtonSelected.png"
                                                               target:self
                                                             selector:@selector(quitGame)];
   [mainMenu addChild:quitButton];
   
   CCMenuItemImage *pauseButton = [CCMenuItemImage itemFromNormalImage:@"pauseButton.png"
-                                                       selectedImage:@"pauseButton.png"
-                                                              target:self
-                                                            selector:@selector(pauseGame)];
-  [mainMenu addChild:pauseButton];
+                                                       selectedImage:@"pauseButtonSelected.png"
+                                                              target:nil
+                                                            selector:nil];
+  
+  CCMenuItemImage *resumeButton = [CCMenuItemImage itemFromNormalImage:@"playResumeButton.png"
+                                                        selectedImage:@"playResumeButtonSelected.png"
+                                                               target:nil
+                                                             selector:nil];
+  
+  CCMenuItemToggle *pauseToggle = [CCMenuItemToggle itemWithTarget:self 
+                                                          selector:@selector(pauseGame) 
+                                                             items:pauseButton, resumeButton, nil];
+  
+  [mainMenu addChild:pauseToggle];
   [mainMenu alignItemsHorizontallyWithPadding:184.0];
   mainMenu.position = ccp(160, 26);
   
@@ -93,6 +118,12 @@
 - (void) registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+}
+
+- (void)onEnter
+{
+  [super onEnter];
+  [FlurryAnalytics logPageView];
 }
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event 
@@ -143,6 +174,7 @@
       collision = [snake checkCollisionWithRect:bg.boundingBox];
     }
     if(collision) {
+      [[GameManager getInstance] handleGameOver];
       [[CCDirector sharedDirector] replaceScene: [GameOverLayer scene]];
     }
     if([snake eatApple:apple.position]) {
@@ -150,8 +182,15 @@
       [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", gameManager.currentScore]];
       [snake addPiece];
       apple.position = [self getRandomApplePosition];
+      [FlurryAnalytics logEvent:@"Apple Eaten"];
     }
     dtTick = 0;
+  }
+  if(highscoreLabel) {
+    if(gameManager.currentHighScore != 0) {
+      highscoreLabel.visible = YES;
+    }
+    [highscoreLabel setString:[NSString stringWithFormat:@"High Score: %d", gameManager.currentHighScore]];
   }
 }
 
@@ -198,6 +237,7 @@
   [apple release];
   [snake release];
   [scoreLabel release];
+  [highscoreLabel release];
   [super dealloc];
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "cocos2d.h"
+#import <GameKit/GameKit.h>
 
 @interface GameOverLayer : CCLayerColor
 

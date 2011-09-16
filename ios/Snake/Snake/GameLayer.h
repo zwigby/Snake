@@ -16,6 +16,7 @@
   Snake *snake;
   Apple *apple;
   CCLabelBMFont *scoreLabel;
+  CCLabelBMFont *highscoreLabel;
 
   ccTime dtTick;
   

@@ -12,6 +12,7 @@
 
 #import "GameLayer.h"
 #import "GameManager.h"
+#import "FlurryAnalytics.h"
 
 // IntroMenuLayer implementation
 @implementation IntroMenuLayer
@@ -43,10 +44,14 @@
     logo.position = ccp(160, 370);
     [self addChild:logo];
     
-    CCSprite *pfpInfo = [CCSprite spriteWithFile:@"pfp_info.png"];
+    CCMenuItemImage *pfpInfo = [CCMenuItemImage itemFromNormalImage:@"pfp_info.png" 
+                                                      selectedImage:@"pfp_info.png" 
+                                                             target:self 
+                                                           selector:@selector(gotoPFPSite:)];
+    CCMenu *pfpMenu = [CCMenu menuWithItems:pfpInfo, nil];
     [pfpInfo setAnchorPoint:ccp(0,0)];
-    pfpInfo.position = ccp(10, 5);
-    [self addChild:pfpInfo];
+    pfpMenu.position = ccp(10, 5);
+    [self addChild:pfpMenu];
 	}
 	return self;
 }
@@ -54,17 +59,16 @@
 - (void)setupMenu
 {
   
-  
   CCMenuItemImage *slowButton = [CCMenuItemImage itemFromNormalImage:@"slowButton.png"
-                                                       selectedImage: @"slowButton.png"
+                                                       selectedImage:@"slowButtonSelected.png"
                                                               target:self
                                                             selector:@selector(playSlowGame:)];
   CCMenuItemImage *mediumButton = [CCMenuItemImage itemFromNormalImage:@"mediumButton.png"
-                                                         selectedImage: @"mediumButton.png"
+                                                         selectedImage:@"mediumButtonSelected.png"
                                                                 target:self
                                                               selector:@selector(playMediumGame:)];
   CCMenuItemImage *fastButton = [CCMenuItemImage itemFromNormalImage:@"fastButton.png"
-                                                       selectedImage: @"fastButton.png"
+                                                       selectedImage:@"fastButtonSelected.png"
                                                               target:self
                                                             selector:@selector(playFastGame:)];
   CCMenu * mainMenu = [CCMenu menuWithItems:slowButton, mediumButton, fastButton, nil];
@@ -73,22 +77,39 @@
   [self addChild:mainMenu];
 }
 
+- (void)onEnter
+{
+  [super onEnter];
+  [FlurryAnalytics logPageView];
+}
+
 - (void)playSlowGame:(CCMenuItem *)menuItem 
 {
-  [GameManager getInstance].tickLength = 0.2;
+  [GameManager getInstance].tickLength = kSlowGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
+  [FlurryAnalytics logEvent:@"Slow Game" timed:YES];
 }
 
 - (void)playMediumGame:(CCMenuItem *)menuItem 
 {
-  [GameManager getInstance].tickLength = 0.1;
+  [GameManager getInstance].tickLength = kMediumGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
+  [FlurryAnalytics logEvent:@"Medium Game" timed:YES];
 }
 
 - (void)playFastGame:(CCMenuItem *)menuItem 
 {
-  [GameManager getInstance].tickLength = 0.04;
+  [GameManager getInstance].tickLength = kFastGameSpeed;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
+  [FlurryAnalytics logEvent:@"Fast Game" timed:YES];
+}
+
+- (void)gotoPFPSite:(CCMenuItemImage *)menuItem
+{
+  // Opens paranoid ferret website
+  UIApplication *app = [UIApplication sharedApplication];
+  NSURL *url = [NSURL URLWithString:@"http://paranoidferret.com"];
+  [app openURL:url];
 }
 
 // on "dealloc" you need to release all your retained objects

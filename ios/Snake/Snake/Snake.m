@@ -105,6 +105,7 @@
     [tail release];
   }
   [head release];
+  [parent release];
   [super dealloc];
 }
 

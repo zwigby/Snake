@@ -101,11 +101,6 @@
 
 - (void)dealloc 
 {
-  if(head != tail) {
-    [tail release];
-  }
-  [head release];
-  [parent release];
   [super dealloc];
 }
 

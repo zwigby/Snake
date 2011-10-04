@@ -15,6 +15,7 @@
 @synthesize currentScore;
 @synthesize tickLength;
 @synthesize currentHighScore;
+@synthesize gameMode;
 
 + (GameManager *)getInstance {
   static GameManager *instance;
@@ -32,6 +33,7 @@
   if (self) {
     tickLength = 0.100;
     currentScore = 0;
+    gameMode = SKGameModeNormal;
   }
   
   return self;
@@ -40,6 +42,12 @@
 - (void)handleGameOver
 {
   GCManager *gcManager = [GCManager getInstance];
+  if(gameMode == SKGameModeProgressive) {
+    [gcManager submitProgressivScore:currentScore];
+    [FlurryAnalytics endTimedEvent:@"Crescendo Game" withParameters:nil];
+    return;
+  }
+  
   if(kSlowGameSpeed - tickLength < 0.00001) {
     [gcManager submitSlowScore:currentScore];
     [FlurryAnalytics endTimedEvent:@"Slow Game" withParameters:nil];
@@ -55,6 +63,11 @@
 - (void)showLeaderboard
 {
   GCManager *gcManager = [GCManager getInstance];
+  if(gameMode == SKGameModeProgressive) {
+    [gcManager showLeaderboard:kProgressivLeaderboardId];
+    return;
+  }
+  
   if(kSlowGameSpeed - tickLength < 0.00001) {
     [gcManager showLeaderboard:kSlowLeaderboardId];
   } else if(kMediumGameSpeed - tickLength < 0.00001) {
@@ -66,18 +79,29 @@
 
 - (void)handleGameReplay
 {
+  if(gameMode == SKGameModeProgressive) {
+    tickLength = kSlowGameSpeed;
+    [FlurryAnalytics logEvent:@"Crescendo Game" timed:YES];
+    return;
+  }
+  
   if(kSlowGameSpeed - tickLength < 0.00001) {
-    [FlurryAnalytics endTimedEvent:@"Slow Game" withParameters:nil];
+    [FlurryAnalytics logEvent:@"Slow Game" timed:YES];
   } else if(kMediumGameSpeed - tickLength < 0.00001) {
-    [FlurryAnalytics endTimedEvent:@"Medium Game" withParameters:nil];
+    [FlurryAnalytics logEvent:@"Medium Game" timed:YES];
   } else if(kFastGameSpeed - tickLength < 0.00001) {
-    [FlurryAnalytics endTimedEvent:@"Fast Game" withParameters:nil];
+    [FlurryAnalytics logEvent:@"Fast Game" timed:YES];
   }
 }
 
 - (int64_t)getHighScore
 {
   GCManager *gcManager = [GCManager getInstance];
+  
+  if(gameMode == SKGameModeProgressive) {
+    return [gcManager getProgressiveHighScore];
+  }
+  
   if(kSlowGameSpeed - tickLength < 0.00001) {
     return [gcManager getSlowHighScore];
   } else if(kMediumGameSpeed - tickLength < 0.00001) {

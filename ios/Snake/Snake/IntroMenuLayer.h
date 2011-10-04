@@ -17,6 +17,7 @@
 // returns a CCScene that contains the IntroMenuLayer as the only child
 + (CCScene *) scene;
 
-- (void)setupMenu;
+- (void)setupMainMenu;
+- (void)setupSecondaryMenu;
 
 @end

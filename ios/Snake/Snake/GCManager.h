@@ -10,6 +10,7 @@
 #define kSlowLeaderboardId        @"1"
 #define kMediumLeaderboardId      @"2"
 #define kFastLeaderboardId        @"3"
+#define kProgressivLeaderboardId  @"4"
 
 #import <Foundation/Foundation.h>
 #import <GameKit/GameKit.h>
@@ -33,10 +34,12 @@
 - (void)submitSlowScore:(int64_t)score;
 - (void)submitMediumScore:(int64_t)score;
 - (void)submitFastScore:(int64_t)score;
+- (void)submitProgressivScore:(int64_t)score;
 - (int64_t)getHighScore:(NSString *)leaderboardType;
 - (int64_t)getSlowHighScore;
 - (int64_t)getMediumHighScore;
 - (int64_t)getFastHighScore;
+- (int64_t)getProgressiveHighScore;
 - (void)showLeaderboard:(NSString *)category;
 
 @end

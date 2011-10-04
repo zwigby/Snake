@@ -17,18 +17,16 @@
   Apple *apple;
   CCLabelBMFont *scoreLabel;
   CCLabelBMFont *highscoreLabel;
-
   ccTime dtTick;
-  
   CGPoint touchStart;
-  
   GameManager *gameManager;
 }
 
 // returns a CCScene that contains the GameLayer as the only child
-+(CCScene *) scene;
++ (CCScene *)scene;
 
 - (void) setupMenu;
 - (CGPoint)getRandomApplePosition;
+- (void)checkGameState;
 
 @end

@@ -103,6 +103,11 @@
   [self submitScore:score withLeaderboard:kFastLeaderboardId];
 }
 
+- (void)submitProgressivScore:(int64_t)score
+{
+  [self submitScore:score withLeaderboard:kProgressivLeaderboardId];
+}
+
 - (int64_t)getHighScore:(NSString *)leaderboardType
 {
   if(!_gameCenterAvailable) {
@@ -146,6 +151,11 @@
 - (int64_t)getFastHighScore
 {
   return [self getHighScore:kFastLeaderboardId];
+}
+
+- (int64_t)getProgressiveHighScore
+{
+  return [self getHighScore:kProgressivLeaderboardId];
 }
 
 - (void)showLeaderboard:(NSString *)category

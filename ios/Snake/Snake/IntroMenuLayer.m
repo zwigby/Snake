@@ -156,6 +156,7 @@
 
 - (void)showAboutScreen:(CCMenuItem *)menuItem 
 {
+  [FlurryAnalytics logEvent:@"About Screen Viewed" timed:NO];
   [[CCDirector sharedDirector] replaceScene: [AboutLayer scene]];
 }
 

@@ -8,6 +8,7 @@
 
 #import "AboutLayer.h"
 #import "IntroMenuLayer.h"
+#import "FlurryAnalytics.h"
 
 @implementation AboutLayer
 
@@ -74,6 +75,7 @@
 - (void)gotoPFPSite:(CCMenuItemImage *)menuItem
 {
   // Opens paranoid ferret website
+  [FlurryAnalytics logEvent:@"PFP Website Clicked" timed:NO];
   UIApplication *app = [UIApplication sharedApplication];
   NSURL *url = [NSURL URLWithString:@"http://paranoidferret.com"];
   [app openURL:url];
@@ -81,6 +83,7 @@
 
 - (void)gotoDnlPage:(CCMenuItemImage *)menuItem
 {
+  [FlurryAnalytics logEvent:@"Drop & Lock App Clicked" timed:NO];
   UIApplication *app = [UIApplication sharedApplication];
   NSURL *url = [NSURL URLWithString:@"http://itunes.apple.com/us/app/drop-lock/id451664237?ls=1&mt=8"];
   [app openURL:url];

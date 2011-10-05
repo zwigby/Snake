@@ -43,7 +43,7 @@
 		AB533110143A46F000774A18 /* crescendoButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AB533104143A46F000774A18 /* crescendoButton.png */; };
 		AB533111143A46F000774A18 /* crescendoButtonSelected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AB533105143A46F000774A18 /* crescendoButtonSelected-hd.png */; };
 		AB533112143A46F000774A18 /* crescendoButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = AB533106143A46F000774A18 /* crescendoButtonSelected.png */; };
-		AB533113143A46F000774A18 /* scoreButtonSelected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AB533107143A46F000774A18 /* scoreButtonSelected-hd.png */; };
+		AB533113143A46F000774A18 /* scoresButtonSelected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AB533107143A46F000774A18 /* scoresButtonSelected-hd.png */; };
 		AB533114143A46F000774A18 /* scoresButton-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AB533108143A46F000774A18 /* scoresButton-hd.png */; };
 		AB533115143A46F000774A18 /* scoresButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AB533109143A46F000774A18 /* scoresButton.png */; };
 		AB533116143A46F000774A18 /* scoresButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = AB53310A143A46F000774A18 /* scoresButtonSelected.png */; };
@@ -255,7 +255,7 @@
 		AB533104143A46F000774A18 /* crescendoButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crescendoButton.png; path = Resources/crescendoButton.png; sourceTree = "<group>"; };
 		AB533105143A46F000774A18 /* crescendoButtonSelected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "crescendoButtonSelected-hd.png"; path = "Resources/crescendoButtonSelected-hd.png"; sourceTree = "<group>"; };
 		AB533106143A46F000774A18 /* crescendoButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = crescendoButtonSelected.png; path = Resources/crescendoButtonSelected.png; sourceTree = "<group>"; };
-		AB533107143A46F000774A18 /* scoreButtonSelected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scoreButtonSelected-hd.png"; path = "Resources/scoreButtonSelected-hd.png"; sourceTree = "<group>"; };
+		AB533107143A46F000774A18 /* scoresButtonSelected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scoresButtonSelected-hd.png"; path = "Resources/scoresButtonSelected-hd.png"; sourceTree = "<group>"; };
 		AB533108143A46F000774A18 /* scoresButton-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "scoresButton-hd.png"; path = "Resources/scoresButton-hd.png"; sourceTree = "<group>"; };
 		AB533109143A46F000774A18 /* scoresButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scoresButton.png; path = Resources/scoresButton.png; sourceTree = "<group>"; };
 		AB53310A143A46F000774A18 /* scoresButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = scoresButtonSelected.png; path = Resources/scoresButtonSelected.png; sourceTree = "<group>"; };
@@ -648,7 +648,7 @@
 				AB533104143A46F000774A18 /* crescendoButton.png */,
 				AB533105143A46F000774A18 /* crescendoButtonSelected-hd.png */,
 				AB533106143A46F000774A18 /* crescendoButtonSelected.png */,
-				AB533107143A46F000774A18 /* scoreButtonSelected-hd.png */,
+				AB533107143A46F000774A18 /* scoresButtonSelected-hd.png */,
 				AB533108143A46F000774A18 /* scoresButton-hd.png */,
 				AB533109143A46F000774A18 /* scoresButton.png */,
 				AB53310A143A46F000774A18 /* scoresButtonSelected.png */,
@@ -1193,7 +1193,7 @@
 				AB533110143A46F000774A18 /* crescendoButton.png in Resources */,
 				AB533111143A46F000774A18 /* crescendoButtonSelected-hd.png in Resources */,
 				AB533112143A46F000774A18 /* crescendoButtonSelected.png in Resources */,
-				AB533113143A46F000774A18 /* scoreButtonSelected-hd.png in Resources */,
+				AB533113143A46F000774A18 /* scoresButtonSelected-hd.png in Resources */,
 				AB533114143A46F000774A18 /* scoresButton-hd.png in Resources */,
 				AB533115143A46F000774A18 /* scoresButton.png in Resources */,
 				AB533116143A46F000774A18 /* scoresButtonSelected.png in Resources */,

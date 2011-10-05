@@ -182,6 +182,7 @@
       [scoreLabel setString:[NSString stringWithFormat:@"Score: %d", gameManager.currentScore]];
       [snake addPiece];
       apple.position = [self getRandomApplePosition];
+      [self checkGameState];
       [FlurryAnalytics logEvent:@"Apple Eaten"];
     }
     dtTick = 0;
@@ -210,6 +211,20 @@
               (arc4random() % (int)box.size.height) * 10 + box.origin.y);
   }
   return pos;
+}
+
+- (void)checkGameState
+{
+  switch (gameManager.gameMode) {
+    case SKGameModeProgressive:
+      gameManager.tickLength = gameManager.tickLength * 0.95;
+      if(gameManager.tickLength < 1.0/60.0) {
+        gameManager.tickLength = 1.0/60.0;
+      }
+      break;
+    default:
+      break;
+  }
 }
 
 - (void)quitGame

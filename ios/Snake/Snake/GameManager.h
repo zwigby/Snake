@@ -14,6 +14,12 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+
+typedef enum { 
+  SKGameModeNormal,
+  SKGameModeProgressive
+} SKGameMode;
+
 @interface GameManager : NSObject
 {
   int64_t currentScore;
@@ -26,6 +32,7 @@
 
 @property (nonatomic, assign) int64_t currentScore;
 @property (nonatomic, assign) ccTime tickLength;
+@property (nonatomic, assign) SKGameMode gameMode;
 
 - (void)handleGameOver;
 - (void)showLeaderboard;

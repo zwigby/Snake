@@ -84,7 +84,7 @@ void uncaughtExceptionHandler(NSException *exception) {
 	[director runWithScene: [IntroMenuLayer scene]];
   
   // Start Analytics
-  [FlurryAnalytics startSession:@"XH5EHVU9M5ZMPPKTH3BA"];
+  [FlurryAnalytics startSession:@"965JCJSMFZTWTKL8Q4F2"];
   // Catch uncaught exceptions and send them to flurry
   NSSetUncaughtExceptionHandler(&uncaughtExceptionHandler);
 }

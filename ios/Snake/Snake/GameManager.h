@@ -11,6 +11,7 @@
 #define kMediumGameSpeed    0.1
 #define kFastGameSpeed      0.04
 
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
@@ -19,6 +20,12 @@ typedef enum {
   SKGameModeNormal,
   SKGameModeProgressive
 } SKGameMode;
+
+typedef enum { 
+  SKControlModeSwipe,
+  SKControlModeHeadClick,
+  SKControlModeAreaClick
+} SKControlMode;
 
 @interface GameManager : NSObject
 {
@@ -33,6 +40,7 @@ typedef enum {
 @property (nonatomic, assign) int64_t currentScore;
 @property (nonatomic, assign) ccTime tickLength;
 @property (nonatomic, assign) SKGameMode gameMode;
+@property (nonatomic, assign) SKControlMode controlMode;
 
 - (void)handleGameOver;
 - (void)showLeaderboard;

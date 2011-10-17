@@ -22,6 +22,7 @@
 }
 
 @property (nonatomic, assign) CGPoint velocity;
+@property (nonatomic, retain) SnakePiece *head;
 
 - (id)initWithLayer:(CCLayer *)layer;
 - (void)addPiece;

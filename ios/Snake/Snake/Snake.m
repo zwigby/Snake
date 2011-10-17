@@ -13,6 +13,7 @@
 @implementation Snake
 
 @synthesize velocity;
+@synthesize head;
 
 // Init as a 3 length snake
 - (id)initWithLayer:(CCLayer *)layer

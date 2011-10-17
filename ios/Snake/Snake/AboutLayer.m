@@ -85,7 +85,7 @@
 {
   [FlurryAnalytics logEvent:@"Drop & Lock App Clicked" timed:NO];
   UIApplication *app = [UIApplication sharedApplication];
-  NSURL *url = [NSURL URLWithString:@"http://itunes.apple.com/us/app/drop-lock/id451664237?ls=1&mt=8"];
+  NSURL *url = [NSURL URLWithString:@"http://itunes.apple.com/us/app/drop-lock-lite/id442866739?ls=1&mt=8"];
   [app openURL:url];
 }
 

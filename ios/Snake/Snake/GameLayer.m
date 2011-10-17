@@ -12,6 +12,7 @@
 #import "IntroMenuLayer.h"
 #import "GameOverLayer.h"
 #import "Snake.h"
+#import "SnakePiece.h"
 #import "Apple.h"
 #import "GameManager.h"
 #import "FlurryAnalytics.h"
@@ -142,25 +143,64 @@
     return;
   }
   
-  CGPoint location = [self convertTouchToNodeSpace: touch];
+  CGPoint location = [self convertTouchToNodeSpace:touch];
   int dx = touchStart.x - location.x;
   int dy = touchStart.y - location.y;
   int adx = abs(dx);
   int ady = abs(dy);
   
-  // minimum finger movement must be 5 "pixels"
-  if(adx < 5 && ady < 5) {
-    return;
-  }
+  NSLog(@"%1.2f %1.2f", location.x, location.y);
   
-  if(adx > ady) {
-    if(snake.velocity.x == 0) {
-      snake.velocity = ccp(-dx / adx, 0);
-    }
-  } else {
-    if(snake.velocity.y == 0) {
-      snake.velocity = ccp(0, -dy / ady);
-    }
+  switch(gameManager.controlMode) {
+    case SKControlModeSwipe:
+      // minimum finger movement must be 5 "pixels"
+      if(adx < 5 && ady < 5) {
+        return;
+      }
+      
+      if(adx > ady) {
+        if(snake.velocity.x == 0) {
+          snake.velocity = ccp(-dx / adx, 0);
+        }
+      } else {
+        if(snake.velocity.y == 0) {
+          snake.velocity = ccp(0, -dy / ady);
+        }
+      }
+      break;
+    case SKControlModeAreaClick:
+      if(location.y < 60) {
+        break;
+      }
+      if(snake.velocity.y != 0) {
+        if(location.x < 160) {
+          snake.velocity = ccp(-1, 0);
+        } else {
+          snake.velocity = ccp(1, 0);
+        }
+      } else {
+        if(location.y < 260) {
+          snake.velocity = ccp(0, -1);
+        } else {
+          snake.velocity = ccp(0, 1);
+        }
+      }
+      break;
+    case SKControlModeHeadClick:
+      if(snake.velocity.y != 0) {
+        if (location.x < snake.head.position.x) {
+          snake.velocity = ccp(-1, 0);
+        } else {
+          snake.velocity = ccp(1, 0);
+        }
+      } else {
+        if (location.y < snake.head.position.y) {
+          snake.velocity = ccp(0, -1);
+        } else {
+          snake.velocity = ccp(0, 1);
+        }
+      }
+      break;
   }
 }
 

@@ -1,0 +1,20 @@
+/* Minimum amount of css to make this thing work */
+#wrapper {
+	position: relative;	
+}
+
+canvas {
+	width: 800px;
+	height: 600px;
+	border: 1px dotted #333;
+	position: absolute;
+	top: 100px;
+}
+
+#score {
+	width: 300px;
+	height: 50px;
+	position: absolute;
+	top: 50px;
+	font-size: 20px;
+}

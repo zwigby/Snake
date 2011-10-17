@@ -16,6 +16,7 @@
 @synthesize tickLength;
 @synthesize currentHighScore;
 @synthesize gameMode;
+@synthesize controlMode;
 
 + (GameManager *)getInstance {
   static GameManager *instance;
@@ -34,6 +35,7 @@
     tickLength = 0.100;
     currentScore = 0;
     gameMode = SKGameModeNormal;
+    controlMode = SKControlModeHeadClick;
   }
   
   return self;

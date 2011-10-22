@@ -165,6 +165,7 @@
 		AB63277214074B8E00179E06 /* playButton_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = AB63277014074B8E00179E06 /* playButton_selected.png */; };
 		AB63277314074B8E00179E06 /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = AB63277114074B8E00179E06 /* playButton.png */; };
 		AB6327761407508C00179E06 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = AB6327751407508C00179E06 /* GameLayer.m */; };
+		AB7E11351452A2E70052B665 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7E11341452A2E70052B665 /* libGoogleAdMobAds.a */; };
 		AB85F29114094C8800D66586 /* SnakePiece.m in Sources */ = {isa = PBXBuildFile; fileRef = AB85F29014094C8800D66586 /* SnakePiece.m */; };
 		AB85F2971409E75F00D66586 /* Snake.m in Sources */ = {isa = PBXBuildFile; fileRef = AB85F2961409E75F00D66586 /* Snake.m */; };
 		AB85F299140A1C6400D66586 /* game_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = AB85F298140A1C6400D66586 /* game_screen.png */; };
@@ -251,7 +252,6 @@
 		ABF7E7E6141AC2E500DD430A /* slowButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF7E7D8141AC2E500DD430A /* slowButtonSelected.png */; };
 		ABF7E7E9141AC30B00DD430A /* pauseButtonSelected-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF7E7E7141AC30B00DD430A /* pauseButtonSelected-hd.png */; };
 		ABF7E7EA141AC30B00DD430A /* pauseButtonSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = ABF7E7E8141AC30B00DD430A /* pauseButtonSelected.png */; };
-		ABFC00941450FCDA00B250BB /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFC00931450FCDA00B250BB /* libGoogleAdMobAds.a */; };
 		ABFC0096145102F200B250BB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFC0095145102F200B250BB /* MessageUI.framework */; };
 		ABFC00981451031100B250BB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ABFC00971451031100B250BB /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
@@ -539,6 +539,13 @@
 		AB63277114074B8E00179E06 /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = playButton.png; path = Resources/playButton.png; sourceTree = "<group>"; };
 		AB6327741407508B00179E06 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		AB6327751407508C00179E06 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
+		AB7E112E1452A2E70052B665 /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerView.h; sourceTree = "<group>"; };
+		AB7E112F1452A2E70052B665 /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADBannerViewDelegate.h; sourceTree = "<group>"; };
+		AB7E11301452A2E70052B665 /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitial.h; sourceTree = "<group>"; };
+		AB7E11311452A2E70052B665 /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADInterstitialDelegate.h; sourceTree = "<group>"; };
+		AB7E11321452A2E70052B665 /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequest.h; sourceTree = "<group>"; };
+		AB7E11331452A2E70052B665 /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADRequestError.h; sourceTree = "<group>"; };
+		AB7E11341452A2E70052B665 /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		AB85F28F14094C8800D66586 /* SnakePiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SnakePiece.h; sourceTree = "<group>"; };
 		AB85F29014094C8800D66586 /* SnakePiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SnakePiece.m; sourceTree = "<group>"; };
 		AB85F2951409E75F00D66586 /* Snake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Snake.h; sourceTree = "<group>"; };
@@ -633,13 +640,6 @@
 		ABF7E7D8141AC2E500DD430A /* slowButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = slowButtonSelected.png; path = Resources/slowButtonSelected.png; sourceTree = "<group>"; };
 		ABF7E7E7141AC30B00DD430A /* pauseButtonSelected-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pauseButtonSelected-hd.png"; path = "Resources/pauseButtonSelected-hd.png"; sourceTree = "<group>"; };
 		ABF7E7E8141AC30B00DD430A /* pauseButtonSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pauseButtonSelected.png; path = Resources/pauseButtonSelected.png; sourceTree = "<group>"; };
-		ABFC008D1450FCDA00B250BB /* GADBannerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerView.h; path = ../../../../../../../Downloads/GoogleAdMobAdsSDK/GADBannerView.h; sourceTree = "<group>"; };
-		ABFC008E1450FCDA00B250BB /* GADBannerViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADBannerViewDelegate.h; path = ../../../../../../../Downloads/GoogleAdMobAdsSDK/GADBannerViewDelegate.h; sourceTree = "<group>"; };
-		ABFC008F1450FCDA00B250BB /* GADInterstitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInterstitial.h; path = ../../../../../../../Downloads/GoogleAdMobAdsSDK/GADInterstitial.h; sourceTree = "<group>"; };
-		ABFC00901450FCDA00B250BB /* GADInterstitialDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADInterstitialDelegate.h; path = ../../../../../../../Downloads/GoogleAdMobAdsSDK/GADInterstitialDelegate.h; sourceTree = "<group>"; };
-		ABFC00911450FCDA00B250BB /* GADRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADRequest.h; path = ../../../../../../../Downloads/GoogleAdMobAdsSDK/GADRequest.h; sourceTree = "<group>"; };
-		ABFC00921450FCDA00B250BB /* GADRequestError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GADRequestError.h; path = ../../../../../../../Downloads/GoogleAdMobAdsSDK/GADRequestError.h; sourceTree = "<group>"; };
-		ABFC00931450FCDA00B250BB /* libGoogleAdMobAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGoogleAdMobAds.a; path = ../../../../../../../Downloads/GoogleAdMobAdsSDK/libGoogleAdMobAds.a; sourceTree = "<group>"; };
 		ABFC0095145102F200B250BB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		ABFC00971451031100B250BB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -661,7 +661,7 @@
 				AB63260B1407428100179E06 /* Foundation.framework in Frameworks */,
 				AB63260D1407428100179E06 /* CoreGraphics.framework in Frameworks */,
 				AB8CE7F61419187E005CBD3D /* libFlurryAnalytics.a in Frameworks */,
-				ABFC00941450FCDA00B250BB /* libGoogleAdMobAds.a in Frameworks */,
+				AB7E11351452A2E70052B665 /* libGoogleAdMobAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1209,13 +1209,13 @@
 		ABFC008B1450FBAF00B250BB /* Ad Mob */ = {
 			isa = PBXGroup;
 			children = (
-				ABFC008D1450FCDA00B250BB /* GADBannerView.h */,
-				ABFC008E1450FCDA00B250BB /* GADBannerViewDelegate.h */,
-				ABFC008F1450FCDA00B250BB /* GADInterstitial.h */,
-				ABFC00901450FCDA00B250BB /* GADInterstitialDelegate.h */,
-				ABFC00911450FCDA00B250BB /* GADRequest.h */,
-				ABFC00921450FCDA00B250BB /* GADRequestError.h */,
-				ABFC00931450FCDA00B250BB /* libGoogleAdMobAds.a */,
+				AB7E112E1452A2E70052B665 /* GADBannerView.h */,
+				AB7E112F1452A2E70052B665 /* GADBannerViewDelegate.h */,
+				AB7E11301452A2E70052B665 /* GADInterstitial.h */,
+				AB7E11311452A2E70052B665 /* GADInterstitialDelegate.h */,
+				AB7E11321452A2E70052B665 /* GADRequest.h */,
+				AB7E11331452A2E70052B665 /* GADRequestError.h */,
+				AB7E11341452A2E70052B665 /* libGoogleAdMobAds.a */,
 			);
 			name = "Ad Mob";
 			sourceTree = "<group>";
@@ -1577,6 +1577,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Snake/Supporting Files/FlurryAnalytics\"",
 					"\"$(SRCROOT)/../../../../../../Downloads/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Snake\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1604,6 +1605,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Snake/Supporting Files/FlurryAnalytics\"",
 					"\"$(SRCROOT)/../../../../../../Downloads/GoogleAdMobAdsSDK\"",
+					"\"$(SRCROOT)/Snake\"",
 				);
 				OTHER_LDFLAGS = "-lz";
 				PRODUCT_NAME = "$(TARGET_NAME)";

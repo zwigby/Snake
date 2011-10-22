@@ -42,8 +42,17 @@
     gameManager = [GameManager getInstance];
     gameManager.currentScore = 0;
     
-    bg = [[CCSprite alloc] initWithFile:@"game_screen.png"];
-    bg.position = ccp(160, 255);
+    if(gameManager.controlMode == SKControlModeDPad) {
+      bg = [[CCSprite alloc] initWithFile:@"game_screen_small.png"];
+      bg.anchorPoint = ccp(0.5, 1.0);
+      bg.position = ccp(160, 457);
+      [self setupDPad];
+    } else {
+      bg = [[CCSprite alloc] initWithFile:@"game_screen.png"];
+      bg.anchorPoint = ccp(0.5, 1.0);
+      bg.position = ccp(160, 457);
+      self.isTouchEnabled = true;
+    }
     
     [self addChild:bg];
     
@@ -76,8 +85,6 @@
     snake = [[Snake alloc] initWithLayer:self];
 
     dtTick = 0.0;
-    
-    self.isTouchEnabled = true;
     
     [self schedule:@selector(update:)];
 
@@ -116,6 +123,41 @@
   [self addChild:mainMenu];
 }
 
+- (void) setupDPad
+{
+  CCMenuItemImage *downButton = [CCMenuItemImage itemFromNormalImage:@"dpadDownButton.png"
+                                                       selectedImage:@"dpadDownButtonSelected.png"
+                                                              target:self
+                                                            selector:@selector(turnDown)];
+  
+  CCMenuItemImage *upButton = [CCMenuItemImage itemFromNormalImage:@"dpadUpButton.png"
+                                                     selectedImage:@"dpadUpButtonSelected.png"
+                                                            target:self
+                                                          selector:@selector(turnUp)];
+  
+  CCMenu *dpadVertical = [CCMenu menuWithItems:upButton, downButton, nil];
+  [dpadVertical alignItemsVerticallyWithPadding:5.0];
+  dpadVertical.position = ccp(160, 48);
+  
+  [self addChild:dpadVertical];
+  
+  CCMenuItemImage *leftButton = [CCMenuItemImage itemFromNormalImage:@"dpadLeftButton.png"
+                                                       selectedImage:@"dpadLeftButtonSelected.png"
+                                                              target:self
+                                                            selector:@selector(turnLeft)];
+  
+  CCMenuItemImage *rightButton = [CCMenuItemImage itemFromNormalImage:@"dpadRightButton.png"
+                                                        selectedImage:@"dpadRightButtonSelected.png"
+                                                               target:self
+                                                             selector:@selector(turnRight)];
+  
+  CCMenu *dpadHorizontal = [CCMenu menuWithItems:leftButton, rightButton, nil];
+  [dpadHorizontal alignItemsHorizontallyWithPadding:60];
+  dpadHorizontal.position = ccp(160, 48);
+  
+  [self addChild:dpadHorizontal];
+}
+
 - (void) registerWithTouchDispatcher
 {
 	[[CCTouchDispatcher sharedDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -148,8 +190,6 @@
   int dy = touchStart.y - location.y;
   int adx = abs(dx);
   int ady = abs(dy);
-  
-  NSLog(@"%1.2f %1.2f", location.x, location.y);
   
   switch(gameManager.controlMode) {
     case SKControlModeSwipe:
@@ -201,6 +241,34 @@
         }
       }
       break;
+  }
+}
+
+- (void)turnUp
+{
+  if(snake.velocity.x != 0) {
+    snake.velocity = ccp(0, 1);
+  }
+}
+
+- (void)turnDown
+{
+  if(snake.velocity.x != 0) {
+    snake.velocity = ccp(0, -1);
+  }
+}
+
+- (void)turnLeft
+{
+  if(snake.velocity.y != 0) {
+    snake.velocity = ccp(-1, 0);
+  }
+}
+
+- (void)turnRight
+{
+  if(snake.velocity.y != 0) {
+    snake.velocity = ccp(1, 0);
   }
 }
 

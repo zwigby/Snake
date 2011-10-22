@@ -8,9 +8,13 @@
 
 #import "cocos2d.h"
 #import <GameKit/GameKit.h>
+#import "GADBannerView.h"
 
 @interface GameOverLayer : CCLayerColor
-
+{
+  GADBannerView *bannerView;
+  UIViewController *adViewController;
+}
 // returns a CCScene that contains the GameOverLayer as the only child
 + (CCScene *) scene;
 

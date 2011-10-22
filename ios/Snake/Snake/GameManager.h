@@ -11,6 +11,7 @@
 #define kMediumGameSpeed    0.1
 #define kFastGameSpeed      0.04
 
+#define CONTROL_MODE_PLIST_KEY @"ControlMode"
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
@@ -24,7 +25,8 @@ typedef enum {
 typedef enum { 
   SKControlModeSwipe,
   SKControlModeHeadClick,
-  SKControlModeAreaClick
+  SKControlModeAreaClick,
+  SKControlModeDPad
 } SKControlMode;
 
 @interface GameManager : NSObject
@@ -34,6 +36,7 @@ typedef enum {
 }
 
 @property (nonatomic, readonly) int64_t currentHighScore;
+@property (nonatomic, assign) BOOL isPlaying;
 
 + (GameManager *)getInstance;
 
@@ -46,5 +49,7 @@ typedef enum {
 - (void)showLeaderboard;
 - (void)handleGameReplay;
 - (int64_t)getHighScore;
+- (void)saveOptions;
+- (void)readOptions;
 
 @end

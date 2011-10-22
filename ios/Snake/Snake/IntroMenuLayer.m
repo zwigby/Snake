@@ -12,6 +12,7 @@
 
 #import "GameLayer.h"
 #import "AboutLayer.h"
+#import "OptionsLayer.h"
 #import "GameManager.h"
 #import "GCManager.h"
 #import "FlurryAnalytics.h"
@@ -94,17 +95,23 @@
                                                              selector:@selector(showAboutScreen:)];
   [aboutButton setAnchorPoint:ccp(1.0, 1.0)];
   
+  CCMenuItemImage *optionsButton = [CCMenuItemImage itemFromNormalImage:@"optionsButton.png"
+                                                        selectedImage:@"optionsButtonSelected.png"
+                                                               target:self
+                                                             selector:@selector(showOptionsScreen:)];
+  [optionsButton setAnchorPoint:ccp(1.0, 1.0)];
+  
   if([GCManager getInstance].gameCenterAvailable) {
     CCMenuItemImage *scoresButton = [CCMenuItemImage itemFromNormalImage:@"scoresButton.png"
                                                            selectedImage:@"scoresButtonSelected.png"
                                                                   target:self
                                                                 selector:@selector(showGameCenter:)];
     [scoresButton setAnchorPoint:ccp(1.0, 1.0)];
-    secondaryMenu = [CCMenu menuWithItems:scoresButton, aboutButton, nil];
-    secondaryMenu.position = ccp(270, 470);
+    secondaryMenu = [CCMenu menuWithItems:scoresButton, optionsButton, aboutButton, nil];
+    secondaryMenu.position = ccp(215, 470);
   } else {
-    secondaryMenu = [CCMenu menuWithItems:aboutButton, nil];
-    secondaryMenu.position = ccp(310, 470);
+    secondaryMenu = [CCMenu menuWithItems:optionsButton, aboutButton, nil];
+    secondaryMenu.position = ccp(260, 470);
   }
   
   [secondaryMenu alignItemsHorizontallyWithPadding:10.0];
@@ -121,6 +128,7 @@
 {
   [GameManager getInstance].gameMode = SKGameModeNormal;
   [GameManager getInstance].tickLength = kSlowGameSpeed;
+  [GameManager getInstance].isPlaying = YES;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
   [FlurryAnalytics logEvent:@"Slow Game" timed:YES];
 }
@@ -129,6 +137,7 @@
 {
   [GameManager getInstance].gameMode = SKGameModeNormal;
   [GameManager getInstance].tickLength = kMediumGameSpeed;
+  [GameManager getInstance].isPlaying = YES;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
   [FlurryAnalytics logEvent:@"Medium Game" timed:YES];
 }
@@ -137,6 +146,7 @@
 {
   [GameManager getInstance].gameMode = SKGameModeNormal;
   [GameManager getInstance].tickLength = kFastGameSpeed;
+  [GameManager getInstance].isPlaying = YES;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
   [FlurryAnalytics logEvent:@"Fast Game" timed:YES];
 }
@@ -145,6 +155,7 @@
 {
   [GameManager getInstance].gameMode = SKGameModeProgressive;
   [GameManager getInstance].tickLength = kSlowGameSpeed;
+  [GameManager getInstance].isPlaying = YES;
   [[CCDirector sharedDirector] replaceScene: [GameLayer scene]];
   [FlurryAnalytics logEvent:@"Crescendo Game" timed:YES];
 }
@@ -158,6 +169,11 @@
 {
   [FlurryAnalytics logEvent:@"About Screen Viewed" timed:NO];
   [[CCDirector sharedDirector] replaceScene: [AboutLayer scene]];
+}
+
+- (void)showOptionsScreen:(CCMenuItem *)menuItem
+{
+  [[CCDirector sharedDirector] replaceScene: [OptionsLayer scene]];
 }
 
 - (void)gotoPFPSite:(CCMenuItemImage *)menuItem

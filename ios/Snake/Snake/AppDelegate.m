@@ -13,7 +13,9 @@
 #import "IntroMenuLayer.h"
 #import "RootViewController.h"
 #import "GCManager.h"
+#import "GameManager.h"
 #import "FlurryAnalytics.h"
+#import "GameManager.h"
 
 @implementation AppDelegate
 
@@ -79,6 +81,9 @@ void uncaughtExceptionHandler(NSException *exception) {
   
   // Authenticate local game center player
   [[GCManager getInstance] authenticateLocalUser];
+  
+  // Grab options for game manager
+  [[GameManager getInstance] readOptions];
 	
 	// Run the intro Scene
 	[director runWithScene: [IntroMenuLayer scene]];
@@ -91,11 +96,16 @@ void uncaughtExceptionHandler(NSException *exception) {
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] pause];
+  
+  if([GameManager getInstance].isPlaying == NO) { 
+    [[CCDirector sharedDirector] pause];
+  }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-	[[CCDirector sharedDirector] resume];
+  if([GameManager getInstance].isPlaying == NO) { 
+    [[CCDirector sharedDirector] resume];
+  }
 }
 
 - (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {

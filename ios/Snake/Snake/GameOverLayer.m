@@ -52,6 +52,31 @@
     
     [self setupMenu];
 	}
+  
+  // setup ad mob
+  
+  adViewController = [[UIViewController alloc] init];
+  adViewController.view = [CCDirector sharedDirector].openGLView;
+  
+  // Create a view of the standard size at the bottom of the screen.
+  bannerView = [[GADBannerView alloc]
+                 initWithFrame:CGRectMake(0.0,
+                                          adViewController.view.frame.size.height -
+                                          GAD_SIZE_320x50.height,
+                                          GAD_SIZE_320x50.width,
+                                          GAD_SIZE_320x50.height)];
+  
+  // Specify the ad's "unit identifier." This is your AdMob Publisher ID.
+  bannerView.adUnitID = @"a14ea0c3725f1ac";
+  
+  // Let the runtime know which UIViewController to restore after taking
+  // the user wherever the ad goes and add it to the view hierarchy.
+  bannerView.rootViewController = adViewController;
+  [adViewController.view addSubview:bannerView];
+  
+  // Initiate a generic request to load it with an ad.
+  [bannerView loadRequest:[GADRequest request]];
+  
 	return self;
 }
 
@@ -102,10 +127,12 @@
   [[GameManager getInstance] showLeaderboard];
 }
 
-
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc
 {
+  [bannerView removeFromSuperview];
+  [adViewController release];
+  [bannerView release];
 	[super dealloc];
 }
 

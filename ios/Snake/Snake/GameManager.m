@@ -17,6 +17,7 @@
 @synthesize currentHighScore;
 @synthesize gameMode;
 @synthesize controlMode;
+@synthesize isPlaying;
 
 + (GameManager *)getInstance {
   static GameManager *instance;
@@ -35,7 +36,7 @@
     tickLength = 0.100;
     currentScore = 0;
     gameMode = SKGameModeNormal;
-    controlMode = SKControlModeHeadClick;
+    controlMode = SKControlModeSwipe;
   }
   
   return self;
@@ -60,6 +61,8 @@
     [gcManager submitFastScore:currentScore];
     [FlurryAnalytics endTimedEvent:@"Fast Game" withParameters:nil];
   }
+  
+  isPlaying = NO;
 }
 
 - (void)showLeaderboard
@@ -94,6 +97,8 @@
   } else if(kFastGameSpeed - tickLength < 0.00001) {
     [FlurryAnalytics logEvent:@"Fast Game" timed:YES];
   }
+  
+  isPlaying = YES;
 }
 
 - (int64_t)getHighScore
@@ -117,6 +122,22 @@
 - (int64_t)currentHighScore
 {
   return [GCManager getInstance].currentHighScore;
+}
+
+- (void)saveOptions
+{
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  
+  [defaults setInteger:self.controlMode forKey:CONTROL_MODE_PLIST_KEY];
+}
+
+- (void)readOptions
+{
+  NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+  
+  if(defaults.dictionaryRepresentation.count > 0 && [defaults stringForKey:CONTROL_MODE_PLIST_KEY] != nil) {
+    self.controlMode = [defaults integerForKey:CONTROL_MODE_PLIST_KEY];
+  }
 }
 
 @end

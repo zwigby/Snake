@@ -10,7 +10,6 @@
 
 @interface AboutLayer : CCLayerColor
 
-
 // returns a CCScene that contains the AboutLayer as the only child
 + (CCScene *) scene;
 

@@ -25,7 +25,8 @@
 // returns a CCScene that contains the GameLayer as the only child
 + (CCScene *)scene;
 
-- (void) setupMenu;
+- (void)setupMenu;
+- (void)setupDPad;
 - (CGPoint)getRandomApplePosition;
 - (void)checkGameState;
 
